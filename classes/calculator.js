@@ -45,8 +45,27 @@ class Calculator {
     }
   }
 
+  writeWelcomeMessage() {
+    console.log(
+      '\x1b[47m',
+      '\x1b[30m',
+      `||____WELCOME TO SIMON'S CALCULATOR____||`,
+      '\x1b[0m'
+    );
+  }
+
   writeResult(result) {
     console.log('\x1b[42m', '\x1b[30m', `Result is: ${result}`, '\x1b[0m');
+  }
+
+  shouldStartAgain() {
+    const input = readlineSync.question(`Start again? (yes / no): `);
+    if (input === 'yes') return true;
+    else if (input === 'no') return false;
+    else {
+      console.error('\x1b[31m', `Please write either 'yes' or 'no'`, '\x1b[0m');
+      return this.shouldStartAgain();
+    }
   }
 }
 
